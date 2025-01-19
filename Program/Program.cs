@@ -38,3 +38,28 @@
 // Calc my_calc = new Calc();
 // int i =5;
 // Console.WriteLine(my_calc.BaghiMande(ref i));
+
+
+// STRUCT
+
+// public struct User
+// {
+//     public string FirstName;
+//     public string LastName;
+//     public int Age;
+// }
+
+// User user;
+// user.FirstName = "Farzad";
+// user.LastName = "Ebrahimi";
+// user.Age = 18;
+
+
+// Access Level
+
+// Access my_access = new Access();
+
+// my_access.PublicMethod();
+// my_access.PrivateMethod(); // Not work
+// my_access.InternalMethod();
+// my_access.ProtectedMethod(); // Not Work
