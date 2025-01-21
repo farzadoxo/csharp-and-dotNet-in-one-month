@@ -1,10 +1,10 @@
-﻿// AGGREGATION
+﻿// // AGGREGATION
 
 // Battery my_battrey = new Battery();
 // Phone my_phone = new Phone(my_battrey);
 
 
-// ABSTRACTS & VIRTUAL & OVERRIDING METHODS
+// // ABSTRACTS & VIRTUAL & OVERRIDING METHODS
 
 // Cat my_cat = new Cat();
 // Dog my_dog = new Dog();
@@ -16,14 +16,15 @@
 // my_dog.Eating();
 
 
-// EXEPION HANDLING
+// // EXEPION HANDLING
 
 // Calc my_calc = new Calc();
+
 
 // Console.WriteLine(my_calc.Divide(20,2));
 
 
-// OUT
+// // OUT
 
 // Calc my_calc = new Calc();
 // int tavan;
@@ -33,14 +34,14 @@
 // Console.WriteLine($"{tavan} && {zarb}");
 
 
-// REF
+// // REF
 
 // Calc my_calc = new Calc();
 // int i =5;
 // Console.WriteLine(my_calc.BaghiMande(ref i));
 
 
-// STRUCT
+// // STRUCT
 
 // public struct User
 // {
@@ -55,7 +56,7 @@
 // user.Age = 18;
 
 
-// Access Level
+// // Access Level
 
 // Access my_access = new Access();
 
@@ -63,3 +64,6 @@
 // my_access.PrivateMethod(); // Not work
 // my_access.InternalMethod();
 // my_access.ProtectedMethod(); // Not Work
+
+
+
