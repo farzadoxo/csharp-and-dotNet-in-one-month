@@ -5,7 +5,6 @@ public interface Itest
     {
         Console.WriteLine("installed");
     }
-
     public abstract void Start2();
 
     public virtual void Start3()
@@ -13,3 +12,4 @@ public interface Itest
         Console.WriteLine("installed");
     }
 }
+
