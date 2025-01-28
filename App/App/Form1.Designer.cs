@@ -32,7 +32,35 @@ partial class Form1
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.ClientSize = new System.Drawing.Size(800, 450);
         this.Text = "Form1";
+
+        Showbtn = new Button
+        {
+            Text = "SHOW DATABASE",
+            Location = new Point(20,20)
+        };
+
+        Addbtn = new Button
+        {
+            Text = "ADD TO DATABASE",
+            Location = new Point(50,50)
+        };
+
+        dbdgv = new DataGridView
+        {
+            Location = new Point(100,100),
+            Size = new Size(400,400)
+        };
+
+
+        Controls.Add(Showbtn);
+        Controls.Add(Addbtn);
+        Controls.Add(dbdgv);
+
     }
 
+
+private Button Showbtn;
+private Button Addbtn;
+private DataGridView dbdgv;
     #endregion
 }
