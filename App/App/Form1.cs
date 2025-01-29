@@ -1,39 +1,48 @@
 using System.Data.SqlClient;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using Repositories.UserRepository;
+using Repositories.IUserRepository;
 namespace App;
 
 public partial class Form1 : Form
 {
+    private readonly IUR repository;
     public Form1()
     {
         InitializeComponent();
         Showbtn.Click += Showbtn_Click;
+        Addbtn.Click += Addbtn_Click;
+        repository = new UserRepository();
+        
     }
 
     public void Showbtn_Click(object sender , EventArgs e)
     {
-        GetAllData();
-    }
-
-
-    public void GetAllData()
-    {
-        string connectionstring = "data source=DESKTOP-B7H346L; initial catalog=MyDb; integrated security=true; Encrypt=true";
-        SqlConnection connection = new SqlConnection(connectionstring);
-        SqlCommand command = new SqlCommand("SELECT * FROM Users",connection);
-        SqlDataReader reader = null;
-        DataTable dt = new DataTable();
-        connection.Open();
-
-        reader = command.ExecuteReader(); 
-        dt.Load(reader);
-
-        while(reader.Read())
+        if(Idtxt.Text == "")
         {
-            var resault = reader.GetValue(1);
-            MessageBox.Show(resault.ToString());
+            dbdgv.DataSource = repository.GetAllData();
         }
-        connection.Close();
+        else
+        {
+            dbdgv.DataSource = repository.GetById(Convert.ToInt32(Idtxt.Text));
+        }
+        
     }
+
+    public void Addbtn_Click(object sender , EventArgs e)
+    {
+        
+        repository.AddRecord(Nametxt.Text,Emailtxt.Text);
+        Nametxt.Clear();    
+        Emailtxt.Clear();
+        
+    }
+
+
+    
+
+    
+
+    
 }

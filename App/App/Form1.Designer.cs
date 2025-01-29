@@ -51,16 +51,38 @@ partial class Form1
             Size = new Size(400,400)
         };
 
+        Nametxt = new TextBox
+        {
+            Location = new Point(130,50)
+        };
+
+        Emailtxt = new TextBox
+        {
+            Location = new Point(250,50)
+        };
+
+        Idtxt = new TextBox
+        {
+            Location = new Point(100,20)
+        };
+
 
         Controls.Add(Showbtn);
         Controls.Add(Addbtn);
         Controls.Add(dbdgv);
-
+        Controls.Add(Nametxt);
+        Controls.Add(Emailtxt);
+        Controls.Add(Idtxt);
     }
 
 
 private Button Showbtn;
 private Button Addbtn;
 private DataGridView dbdgv;
+private TextBox Nametxt;
+private TextBox Emailtxt;
+private TextBox Idtxt;
+
+
     #endregion
 }
