@@ -7,7 +7,7 @@ namespace Repositories.IUserRepository
     {
         public DataTable GetAllData();
 
-        public void AddRecord(string name , string email);
+        public int AddRecord(string name , string email);
 
         public User GetById(int id);
     }

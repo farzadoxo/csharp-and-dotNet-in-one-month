@@ -41,7 +41,7 @@ namespace Repositories.UserRepository
             return dt;
         }
 
-        public void AddRecord(string name , string email)
+        public int AddRecord(string name , string email)
         {
             SetConnectionToDatabase my_connection = new SetConnectionToDatabase();
             SqlCommand command = new SqlCommand("Usp_Users_AddUser",my_connection.connection);
@@ -50,8 +50,9 @@ namespace Repositories.UserRepository
             command.Parameters.AddWithValue("@Email",email);
 
             my_connection.connection.Open();
-            command.ExecuteNonQuery();
+            int resault = command.ExecuteNonQuery();
             my_connection.connection.Close();
+            return resault;
         }
 
 
