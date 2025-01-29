@@ -11,7 +11,7 @@ public partial class Form1 : Form
     public Form1()
     {
         InitializeComponent();
-        Showbtn.Click += Showbtn_Click;
+        Showbtn.Click += new EventHandler(Showbtn_Click);
         Addbtn.Click += Addbtn_Click;
         repository = new UserRepository();
         
@@ -33,9 +33,18 @@ public partial class Form1 : Form
     public void Addbtn_Click(object sender , EventArgs e)
     {
         
-        repository.AddRecord(Nametxt.Text,Emailtxt.Text);
-        Nametxt.Clear();    
-        Emailtxt.Clear();
+        int resault = repository.AddRecord(Nametxt.Text,Emailtxt.Text);
+        if(resault > 0)
+        {
+            Nametxt.Clear();    
+            Emailtxt.Clear();
+            MessageBox.Show("رکورد جدید اضافه شد");
+        }
+        else
+        {
+            MessageBox.Show("خطایی رخ داد","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
+        }
+       
         
     }
 
