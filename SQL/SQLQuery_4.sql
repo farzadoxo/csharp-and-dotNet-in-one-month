@@ -1,0 +1,16 @@
+SELECT TOP (1000) [Id]
+      ,[Name]
+      ,[Information]
+      ,[LogoFileKey]
+      ,[NumberOfUnits]
+      ,[NumberOfPlates]
+      ,[GuestCode]
+      ,[CreatedBy]
+      ,[CreatedOn]
+      ,[ModifiedOn]
+      ,[ModifiedBy]
+      ,[IsDeleted]
+      ,[LetterHeadFileKey]
+  FROM [Hestia].[dbo].[Projects]
+
+  
