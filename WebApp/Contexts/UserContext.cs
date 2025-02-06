@@ -2,13 +2,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 
 
-namespace Contexts.UserContex
+namespace Contexts.UserContex   
 {
     public class UserContex : DbContext
     {
         public UserContex(DbContextOptions options):base(options)
         {
-
+            
         }
 
         public DbSet<User> Product { get; set; }
