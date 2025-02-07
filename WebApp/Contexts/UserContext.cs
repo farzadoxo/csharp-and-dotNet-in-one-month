@@ -1,22 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 
-
-namespace Contexts.UserContex   
+namespace Contexts.UserContext
 {
-    public class UserContex : DbContext
+    public class UserContextt : DbContext
     {
-        public UserContex(DbContextOptions options):base(options)
+        public UserContextt(DbContextOptions option):base(option)
         {
-            
+
         }
 
-        public DbSet<User> Product { get; set; }
+        public DbSet<User> DBSet { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("data source=DESKTOP-9PPD55B ; initial catalog=UserDB;");
+            optionsBuilder.UseSqlServer("data source= ; initialize catalog= ; integrated security= true");
         }
     }
 }
