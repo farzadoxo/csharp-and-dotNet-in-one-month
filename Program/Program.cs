@@ -102,3 +102,21 @@
 // select n;
 
 // Console.WriteLine(my_query);
+
+
+// INTERFACE
+
+// Iterface face = new Terface();
+// face.Hello();
+
+// Terface face = new Terface();
+// face.Hello();
+
+// DI (DEPENDENCY INJECTION)
+
+// Sword sword = new Sword();
+// Shutgun shutgun = new Shutgun();
+
+// Warrior warrior1 = new Warrior(sword);
+
+// warrior1.Attack();
