@@ -30,5 +30,20 @@ namespace MyWebAPI.Controller
             return Ok(users);
         }
 
+        [HttpPost("register")]
+        public IActionResult Register(RegisterDTO dto)
+        {
+            var resault = _repository.Register(dto);
+            if(resault==true)
+            {
+                return Created();
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
+
     }
 }
