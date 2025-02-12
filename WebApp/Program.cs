@@ -10,6 +10,10 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<UserContex>(option=>option.UseSqlServer("Data Source=DESKTOP-9PPD55B;Initial Catalog=UserDb;integrated security=true;TrustServerCertificate=True"));
 builder.Services.AddScoped<IUserRepository,UserRepository>();
 builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<UserContex>();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddControllers();
+builder.Services.AddSwaggerGen(c=>c.SwaggerDoc("v1",new OpenApiInfo {Title="MY API",Version="v1"}));
+
 
 var app = builder.Build();
 
