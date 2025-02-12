@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyWebAPI.Contexs;
 using MyWebAPI.DTOs;
@@ -7,9 +8,11 @@ using MyWebAPI.Models;
 public class UserRepository : IUserRepository
 {
     private readonly UserContex _db;
-    public UserRepository(UserContex db)
+    private readonly UserManager<IdentityUser> _userManager;
+    public UserRepository(UserContex db,UserManager<IdentityUser> userManager)
     {
         _db = db;
+        _userManager = userManager;
     }
     public List<User> GetAllUser()
     {
