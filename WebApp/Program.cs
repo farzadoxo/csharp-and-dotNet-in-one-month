@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using MyWebAPI.Contexs;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,10 +18,13 @@ builder.Services.AddSwaggerGen(c=>c.SwaggerDoc("v1",new OpenApiInfo {Title="MY A
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
