@@ -33,4 +33,23 @@ public class UserRepository : IUserRepository
         UserDTO resault = new UserDTO(count,data);
         return resault;
     }
+
+    public bool Register(RegisterDTO dto)
+    {
+        IdentityUser user = new IdentityUser
+        {
+            UserName=dto.UserName,
+            PasswordHash=dto.Password
+        };
+        var i = _userManager.CreateAsync(user);
+
+        if(i!=null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
