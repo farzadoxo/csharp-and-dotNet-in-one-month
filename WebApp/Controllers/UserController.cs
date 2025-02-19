@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyWebAPI.DTOs;
 
@@ -8,9 +9,11 @@ namespace MyWebAPI.Controller
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _repository;
-        public UserController(IUserRepository repository)
+        private readonly UserManager<IdentityUser> _userManager;
+        public UserController(IUserRepository repository,UserManager<IdentityUser> userManager)
         {
             _repository = repository;
+            _userManager = userManager;
         }
 
 
@@ -60,10 +63,11 @@ namespace MyWebAPI.Controller
         [HttpPost("login")]
         public IActionResult Login(LoginDTO dto)
         {
-            var resault = _repository.Login(dto);
-            if(resault == true)
+            var user = _userManager.FindByNameAsync(dto.UserName).Result;
+            string token = TokenGenerator.GenerateEncodedToken(user);
+            if(user.PasswordHash == HashGenerator.Generate(dto.Password))
             {
-                return Ok();
+                return Ok(token);
             }
             else
             {
