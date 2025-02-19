@@ -47,5 +47,29 @@ namespace MyWebAPI.Controller
    
         }
 
+        [HttpPost("upload")]
+        public IActionResult UploadAvatar(IFormFile frm)
+        {
+            string path= @"C:\Users\test\Pictures";
+            ImageExtention.SaveToServer(frm,path);
+            return Ok();
+        }
+
+
+
+        [HttpPost("login")]
+        public IActionResult Login(LoginDTO dto)
+        {
+            var resault = _repository.Login(dto);
+            if(resault == true)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
     }
 } 
