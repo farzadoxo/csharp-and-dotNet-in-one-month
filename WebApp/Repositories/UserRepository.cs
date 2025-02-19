@@ -55,21 +55,21 @@ public class UserRepository : IUserRepository
             return false;
         }
     }
-
-    public bool Login(LoginDTO dto)
-    {
-        var user = _userManager.FindByNameAsync(dto.UserName).Result;
-        if(user == null)
-        {
-            return false;
-        }
-        else if(user.PasswordHash == HashGenerator.Generate(dto.Password))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }
+//     public bool Login(LoginDTO dto)
+//     {
+        
+//         if(user == null)
+//         {
+//             return false;
+//         }
+//         else if(user.PasswordHash == HashGenerator.Generate(dto.Password))
+//         {
+//             return true;
+//         }
+//         else
+//         {
+//             return false;
+//         }
+//     }
+// }

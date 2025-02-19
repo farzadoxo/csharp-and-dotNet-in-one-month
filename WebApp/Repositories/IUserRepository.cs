@@ -8,5 +8,5 @@ public interface IUserRepository
     public List<User> GetUserById();
     public List<User> GetPaging(int skip,int take);
     public UserDTO GetCount();
-    public bool Login(LoginDTO dto);
+    // public bool Login(LoginDTO dto);
 }
