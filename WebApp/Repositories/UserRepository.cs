@@ -42,11 +42,28 @@ public class UserRepository : IUserRepository
         IdentityUser user = new IdentityUser
         {
             UserName=dto.UserName,
-            PasswordHash=dto.Password
+            PasswordHash= HashGenerator.Generate(dto.Password)
         };
-        var i = _userManager.CreateAsync(user);
+        var i = _userManager.CreateAsync(user).Result;
 
         if(i!=null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool Login(LoginDTO dto)
+    {
+        var user = _userManager.FindByNameAsync(dto.UserName).Result;
+        if(user == null)
+        {
+            return false;
+        }
+        else if(user.PasswordHash == HashGenerator.Generate(dto.Password))
         {
             return true;
         }
