@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using MyWebAPI.DTOs;
 
 namespace MyWebAPI.Controller
@@ -17,6 +18,7 @@ namespace MyWebAPI.Controller
         }
 
 
+        [SecurityFilter]
         [HttpGet]
         [Route("getallusers")]
         public IActionResult GetAllUsers()
@@ -59,12 +61,11 @@ namespace MyWebAPI.Controller
         }
 
 
-
         [HttpPost("login")]
         public IActionResult Login(LoginDTO dto)
         {
             var user = _userManager.FindByNameAsync(dto.UserName).Result;
-            string token = TokenGenerator.GenerateEncodedToken(user);
+            string token = TokenSystem.GenerateEncodedToken(user);
             if(user.PasswordHash == HashGenerator.Generate(dto.Password))
             {
                 return Ok(token);
