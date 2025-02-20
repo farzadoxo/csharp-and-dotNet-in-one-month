@@ -45,7 +45,107 @@ public class SecurityFilter : ActionFilterAttribute
                         var _roleManager = (RoleManager<IdentityRole>) context.HttpContext.RequestServices.GetService(typeof(RoleManager<IdentityRole>));
                         var role = _roleManager.FindByNameAsync(_Role).Result;
 
-                        bool isinrole = _userManager.IsInRoleAsync(user,rolename).Result;
+                        bool isinrole = _userManager.IsInRoleAsync
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        (user,rolename).Result;
                         if(isinrole)
                         {
                             if(rolename == _Role)
@@ -56,6 +156,10 @@ public class SecurityFilter : ActionFilterAttribute
                             {
                                 context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.Unauthorized , Message="Your role is not authorized"});
                             }
+                        }
+                        else
+                        {
+                             context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.Unauthorized , Message="You dont have User Role"});
                         }
 
                         
