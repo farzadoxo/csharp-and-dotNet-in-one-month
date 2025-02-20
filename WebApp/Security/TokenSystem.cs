@@ -11,6 +11,7 @@ public class TokenSystem
             var claims = new[]
             {
                 new Claim("UserId", user.Id.ToString()),
+                new Claim("Role",ApplicationRole.User)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("behnam be hazrat @34 abas peydat konam *"));
@@ -21,7 +22,7 @@ public class TokenSystem
                 issuer: "www.mft.com",
                 audience: "www.mft.com",
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(2000),
+                expires: DateTime.Now.AddMinutes(10),
                 signingCredentials: creds);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
