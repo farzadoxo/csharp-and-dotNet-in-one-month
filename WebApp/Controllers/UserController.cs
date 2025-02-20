@@ -18,7 +18,7 @@ namespace MyWebAPI.Controller
         }
 
 
-        [SecurityFilter]
+        [SecurityFilter(ApplicationRole.User)]
         [HttpGet]
         [Route("getallusers")]
         public IActionResult GetAllUsers()
