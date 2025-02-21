@@ -11,7 +11,7 @@ public class TokenSystem
             var claims = new[]
             {
                 new Claim("UserId", user.Id.ToString()),
-                new Claim("Role",ApplicationRole.Admin)
+                new Claim("Role",ApplicationRole.User)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("behnam be hazrat @34 abas peydat konam *"));

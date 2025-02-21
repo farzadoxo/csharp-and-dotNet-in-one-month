@@ -20,7 +20,7 @@ public class SecurityFilter : ActionFilterAttribute
         // Check Token Exists
         if(string.IsNullOrEmpty(authorizationHeader))
         {
-            context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.Unauthorized , Message="Client dont have any token !!!"});
+            ReturnError(Errors.NoToken,context);
         }
         else
         {
@@ -34,7 +34,7 @@ public class SecurityFilter : ActionFilterAttribute
                 if(principal != null)
                 {
                     string userid = principal.Claims.Where(x=> x.Type == "UserId").FirstOrDefault().Value;
-                    string rolename = principal.Claims.Where(x=> x.Type == "UserId").FirstOrDefault().Value;
+                    string rolename = principal.Claims.Where(x=> x.Type == "Role").FirstOrDefault().Value;
 
                     // Check User Exist
                     if(!string.IsNullOrEmpty(userid))
@@ -52,28 +52,33 @@ public class SecurityFilter : ActionFilterAttribute
                             if(rolename == _Role)
                             {
                                 return;
+                                
                             }
                             else
                             {
-                                context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.Unauthorized , Message="Your role is not authorized"});
+                                ReturnError(Errors.RoleUnauthorized,context);
                             }
                         }
                         else
                         {
-                             context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.Unauthorized , Message="You dont have User Role"});
+                             ReturnError(Errors.NoUserRole,context);
                         }
 
                         
                     }
+                    else
+                    {
+                        ReturnError(Errors.UserDoNotExists,context);
+                    }
                 }
                 else
                 {
-                    context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.Unauthorized , Message="User is does not exists !!!"});
+                    ReturnError(Errors.InvalidToken,context);
                 }
             }
             else
             {
-                context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.Unauthorized , Message="Clients Token is not a Bearer type !!!!"});
+                ReturnError(Errors.InvalidTokenType,context);
             }
         }
 
@@ -82,5 +87,34 @@ public class SecurityFilter : ActionFilterAttribute
     public override void OnActionExecuted(ActionExecutedContext context)
     {
         base.OnActionExecuted(context);
+    }
+
+
+    public static void ReturnError(Errors error,ActionExecutingContext context)
+    {
+        switch(error)
+        {
+            case Errors.NoToken:
+                context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.Unauthorized , Message="Client dont have any token !"});
+                break;
+            case Errors.InvalidTokenType:
+                context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.Unauthorized , Message="Clients Token is not a Bearer type !"});
+                break;
+            case Errors.InvalidToken:
+                context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.Unauthorized , Message="Invalid Token !"});
+                break;
+            case Errors.UserDoNotExists:
+                context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.Unauthorized , Message="User is does not exists !"});
+                break;
+            case Errors.NoUserRole:
+                context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.Unauthorized , Message="You dont have User Role"});
+                break;
+            case Errors.RoleUnauthorized:
+                context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.Unauthorized , Message="Your role is not authorized !"});
+                break;
+            default:
+                context.Result = new JsonResult(new {HttpStatusCode = HttpStatusCode.InternalServerError , Message="Somthing wrong happend !"});
+                break;
+        }
     }
 }
