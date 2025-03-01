@@ -29,6 +29,7 @@ public class TokenSystem
 
         public static ClaimsPrincipal Validate(string token)
         {
+
             JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
             TokenValidationParameters parameters = new TokenValidationParameters()
             {
